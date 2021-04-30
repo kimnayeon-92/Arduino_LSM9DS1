@@ -76,6 +76,9 @@ int LSM9DS1Class::begin()
   writeRegister(LSM9DS1_ADDRESS_M, LSM9DS1_CTRL_REG2_M, 0x00); // 4 gauss
   writeRegister(LSM9DS1_ADDRESS_M, LSM9DS1_CTRL_REG3_M, 0x00); // Continuous conversion mode
 
+  //FIF0
+  // writeRegister(LSM9DS1_ADDRESS, 0x23, 0x02)
+  writeRegister(LSM9DS1_ADDRESS, 0x2E, 0xC0);
   return 1;
 }
 
@@ -133,9 +136,9 @@ int LSM9DS1Class::accelerationAvailable()
       return 1;
     }
   } else {
-    if (readRegister(LSM9DS1_ADDRESS, LSM9DS1_STATUS_REG) & 0x01) {
-      return 1;
-    }
+   // if (readRegister(LSM9DS1_ADDRESS, LSM9DS1_STATUS_REG) & 0x01) {
+   //   return 1;
+   // }
   }
 
   return 0;
